@@ -328,6 +328,16 @@ TcpFastbootTransportStart (
     NULL                                            // Default advanced TCP options
   };
 
+  Status = gBS->LocateProtocol(
+    &gEfiSimpleTextOutProtocolGuid,
+    NULL,
+    (VOID **) &mTextOut
+    );
+  if (EFI_ERROR (Status)) {
+    DEBUG ((EFI_D_ERROR, "Fastboot: Open Text Output Protocol: %r\n", Status));
+    return Status;
+  }
+
   mReceiveEvent = ReceiveEvent;
   InitializeListHead (&mPacketListHead);
 
@@ -662,17 +672,6 @@ TcpFastbootTransportEntryPoint (
   )
 {
   EFI_STATUS Status;
-
-
-  Status = gBS->LocateProtocol(
-    &gEfiSimpleTextOutProtocolGuid,
-    NULL,
-    (VOID **) &mTextOut
-    );
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "Fastboot: Open Text Output Protocol: %r\n", Status));
-    return Status;
-  }
 
   Status = gBS->InstallProtocolInterface (
                   &ImageHandle,
