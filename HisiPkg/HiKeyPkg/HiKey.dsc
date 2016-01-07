@@ -98,6 +98,7 @@
 
 [LibraryClasses.AARCH64]
   ArmLib|ArmPkg/Library/ArmLib/AArch64/AArch64Lib.inf
+  NULL|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
 
 [LibraryClasses.common.SEC]
   PrePiLib|EmbeddedPkg/Library/PrePiLib/PrePiLib.inf
@@ -415,13 +416,15 @@
   # USB
   #
   EmbeddedPkg/Drivers/DwUsbDxe/DwUsbDxe.inf
-  EmbeddedPkg/Drivers/AndroidFastbootTransportUsbDxe/FastbootTransportUsbDxe.inf
 
   #
-  # Fastboot
+  # Fastboot Support
   #
   EmbeddedPkg/Application/AndroidFastboot/AndroidFastbootApp.inf
   HisiPkg/HiKeyPkg/Drivers/HiKeyFastbootDxe/HiKeyFastbootDxe.inf
+  #EmbeddedPkg/Drivers/AndroidFastbootTransportUsbDxe/FastbootTransportUsbDxe.inf
+  EmbeddedPkg/Drivers/AndroidFastbootTransportTcpDxe/FastbootTransportTcpDxe.inf
+
 
   #
   # FAT filesystem + GPT/MBR partitioning
